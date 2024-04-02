@@ -10,7 +10,10 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 
 [dependencies]
-candle = { version = "*", package = "candle-core", features = ["cuda"]}
+# candle = { version = "*", package = "candle-core", features = ["cuda"] }
+candle = { package = "candle-core", git = "https://github.com/yinqiwen/candle", branch = "main", features = [
+    "cuda",
+] }
 half = { version = "2.3.1", features = ["num-traits"] }
 
 [build-dependencies]
