@@ -86,6 +86,11 @@ fn main() -> Result<()> {
             .par_iter()
             .map(|(cu_file, obj_file)| {
                 let mut command = std::process::Command::new("nvcc");
+                let cuda_nvcc_flags_env = std::env::var("CUDA_NVCC_FLAGS");
+                if let Ok(cuda_nvcc_flags_env) = &cuda_nvcc_flags_env {
+                    command
+                        .args(["--compiler-options", cuda_nvcc_flags_env]);
+                }
                 command
                     .arg("-O3")
                     .arg("-std=c++17")
